@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VehicleRegistry.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b226b43a765e9a6960b120f18868ae26b8b42c38")]
 [assembly: System.Reflection.AssemblyProductAttribute("VehicleRegistry.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VehicleRegistry.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

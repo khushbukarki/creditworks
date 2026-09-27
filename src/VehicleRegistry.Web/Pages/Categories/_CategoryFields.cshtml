@@ -1,0 +1,28 @@
+@model VehicleRegistry.Web.Pages.Categories.CategoryForm
+<div class="field">
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" required maxlength="@CategoryRules.MaxNameLength" />
+    <span asp-validation-for="Name" class="field-error"></span>
+</div>
+
+<div class="field field--short">
+    <label asp-for="MinWeightKg">Starts at (kg)</label>
+    <input asp-for="MinWeightKg" type="number" inputmode="decimal" step="0.01" min="0" required aria-describedby="start-hint" />
+    <span id="start-hint" class="hint">A vehicle of exactly this weight belongs to this category. The category ends where the next heavier one starts.</span>
+    <span asp-validation-for="MinWeightKg" class="field-error"></span>
+</div>
+
+<fieldset class="field icon-picker">
+    <legend>Icon</legend>
+    <div class="icon-picker__options">
+        @foreach (var icon in CategoryIcons.All)
+        {
+            <label class="icon-option">
+                <input type="radio" asp-for="IconKey" value="@icon.Key" id="icon-@icon.Key" required />
+                <img src="/icons/@(icon.Key).svg" alt="" width="32" height="32" />
+                <span>@icon.DisplayName</span>
+            </label>
+        }
+    </div>
+    <span asp-validation-for="IconKey" class="field-error"></span>
+</fieldset>

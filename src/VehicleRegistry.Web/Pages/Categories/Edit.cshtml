@@ -1,0 +1,16 @@
+@page "{id:int}"
+@model VehicleRegistry.Web.Pages.Categories.EditModel
+@{
+    ViewData["Title"] = "Edit category";
+}
+<h1>Edit category</h1>
+<p class="lede">Changing the starting weight also moves the end of the lighter category next to it.</p>
+
+<form method="post" class="form">
+    <div asp-validation-summary="ModelOnly" class="form-errors" role="alert"></div>
+    <partial name="_CategoryFields" for="Input" />
+    <div class="form-actions">
+        <button type="submit" class="button">Save changes</button>
+        <a asp-page="Index">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,56 @@
+@page
+@model VehicleRegistry.Web.Pages.Categories.IndexModel
+@{
+    ViewData["Title"] = "Weight categories";
+}
+<div class="page-heading">
+    <h1>Weight categories</h1>
+    <a class="button" asp-page="Create">Add category</a>
+</div>
+<p class="lede">
+    Every weight from 0 kg upwards belongs to exactly one category. Each category starts at its own
+    weight and ends where the next one begins. Changes apply to all vehicles straight away.
+</p>
+
+<ol class="scale" aria-label="Category scale, lightest to heaviest">
+    @foreach (var category in Model.Categories)
+    {
+        <li class="scale__band">
+            <span class="scale__start">@DisplayFormat.Kg(category.MinWeightKg)</span>
+            <span class="scale__name">
+                <partial name="_CategoryIcon" model="new CategoryIconViewModel(category.IconKey, category.Name)" />
+                @category.Name
+            </span>
+        </li>
+    }
+</ol>
+
+<div class="table-wrap">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Weight range</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>
+                        <span class="category-cell">
+                            <partial name="_CategoryIcon" model="new CategoryIconViewModel(category.IconKey, category.Name)" />
+                            @category.Name
+                        </span>
+                    </td>
+                    <td>@DisplayFormat.Range(category)</td>
+                    <td class="actions">
+                        <a asp-page="Edit" asp-route-id="@category.Id">Edit<span class="visually-hidden"> @category.Name</span></a>
+                        <a asp-page="Delete" asp-route-id="@category.Id">Delete<span class="visually-hidden"> @category.Name</span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

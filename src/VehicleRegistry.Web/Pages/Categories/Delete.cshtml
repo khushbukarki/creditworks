@@ -1,0 +1,26 @@
+@page "{id:int}"
+@model VehicleRegistry.Web.Pages.Categories.DeleteModel
+@{
+    ViewData["Title"] = "Delete category";
+    var category = Model.Category!;
+}
+<h1>Delete “@category.Name”?</h1>
+
+<form method="post" class="form">
+    <div asp-validation-summary="All" class="form-errors" role="alert"></div>
+
+    <p>@category.Name covers: @DisplayFormat.Range(category).</p>
+    @if (Model.AbsorbedBy is { } absorbedBy)
+    {
+        <p>After deleting it, those weights will belong to <strong>@absorbedBy.Name</strong>, and any vehicles in that range will show as @absorbedBy.Name.</p>
+        <div class="form-actions">
+            <button type="submit" class="button button--danger">Delete category</button>
+            <a asp-page="Index">Cancel</a>
+        </div>
+    }
+    else
+    {
+        <p>This is the only category, so it can't be deleted. Every vehicle must belong to a category.</p>
+        <a asp-page="Index">Back to categories</a>
+    }
+</form>

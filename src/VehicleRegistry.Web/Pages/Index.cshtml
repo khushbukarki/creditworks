@@ -1,10 +1,16 @@
 ﻿@page
-@model IndexModel
+@model ErrorModel
 @{
-    ViewData["Title"] = "Home page";
+    var notFound = Model.ErrorStatusCode == 404;
+    ViewData["Title"] = notFound ? "Not found" : "Error";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (notFound)
+{
+    <h1>That page or record doesn't exist</h1>
+    <p>It may have been deleted. <a asp-page="/Index">Go to the vehicle list</a>.</p>
+}
+else
+{
+    <h1>Something went wrong</h1>
+    <p>Your request couldn't be completed. Try again, and if it keeps happening, quote reference <code>@Model.RequestId</code>.</p>
+}

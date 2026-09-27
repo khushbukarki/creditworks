@@ -1,0 +1,43 @@
+@page
+@model VehicleRegistry.Web.Pages.Vehicles.CreateModel
+@{
+    ViewData["Title"] = "Add vehicle";
+}
+<h1>Add vehicle</h1>
+<p class="lede">The weight category is worked out automatically from the weight.</p>
+
+<form method="post" class="form">
+    <div asp-validation-summary="ModelOnly" class="form-errors" role="alert"></div>
+
+    <div class="field">
+        <label asp-for="Input.OwnerName">Owner's name</label>
+        <input asp-for="Input.OwnerName" required maxlength="@VehicleRules.MaxOwnerNameLength" autocomplete="name" />
+        <span asp-validation-for="Input.OwnerName" class="field-error"></span>
+    </div>
+
+    <div class="field">
+        <label asp-for="Input.ManufacturerId">Manufacturer</label>
+        <select asp-for="Input.ManufacturerId" asp-items="@(new SelectList(Model.Manufacturers, nameof(ManufacturerOption.Id), nameof(ManufacturerOption.Name)))" required>
+            <option value="">Choose a manufacturer</option>
+        </select>
+        <span asp-validation-for="Input.ManufacturerId" class="field-error"></span>
+    </div>
+
+    <div class="field field--short">
+        <label asp-for="Input.YearOfManufacture">Year of manufacture</label>
+        <input asp-for="Input.YearOfManufacture" type="number" inputmode="numeric" min="@VehicleRules.EarliestYear" required />
+        <span asp-validation-for="Input.YearOfManufacture" class="field-error"></span>
+    </div>
+
+    <div class="field field--short">
+        <label asp-for="Input.WeightKg">Weight (kg)</label>
+        <input asp-for="Input.WeightKg" type="number" inputmode="decimal" step="0.01" min="0.01" required aria-describedby="weight-hint" />
+        <span id="weight-hint" class="hint">Up to two decimal places, for example 1850.75</span>
+        <span asp-validation-for="Input.WeightKg" class="field-error"></span>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="button">Add vehicle</button>
+        <a asp-page="/Index">Cancel</a>
+    </div>
+</form>

@@ -8,13 +8,12 @@ namespace VehicleRegistry.Web.Pages;
 [IgnoreAntiforgeryToken]
 public class ErrorModel : PageModel
 {
-    public string? RequestId { get; set; }
+    public int? ErrorStatusCode { get; private set; }
+    public string? RequestId { get; private set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-    public void OnGet()
+    public void OnGet(int? statusCode)
     {
+        ErrorStatusCode = statusCode;
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
     }
 }
-
