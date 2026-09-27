@@ -1,19 +1,22 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace VehicleRegistry.Web.Pages;
-
-[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-[IgnoreAntiforgeryToken]
-public class ErrorModel : PageModel
+﻿@page
+@model ErrorModel
+@{
+    var notFound = Model.ErrorStatusCode == 404;
+    ViewData["Title"] = notFound ? "Not found" : "Error";
+}
+@if (notFound)
 {
-    public int? ErrorStatusCode { get; private set; }
-    public string? RequestId { get; private set; }
+    <h1>That page or record doesn't exist</h1>
+    <p>It may have been deleted. <a asp-page="/Index">Go to the vehicle list</a>.</p>
+}
+else
+{
+    <h1>Something went wrong</h1>
+    <p>Your request couldn't be completed. Try again, and if it keeps happening, quote reference <code>@Model.RequestId</code>.</p>
+}
 
-    public void OnGet(int? statusCode)
-    {
-        ErrorStatusCode = statusCode;
-        RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-    }
+@if (Model.DeveloperDetails is not null)
+{
+    <h2>Developer details (only shown in Development)</h2>
+    <pre style="white-space: pre-wrap; background: #fff; padding: 1rem; border: 1px solid #c9d1d8;">@Model.DeveloperDetails</pre>
 }

@@ -1,16 +1,58 @@
 ﻿@page
-@model ErrorModel
+@model IndexModel
 @{
-    var notFound = Model.ErrorStatusCode == 404;
-    ViewData["Title"] = notFound ? "Not found" : "Error";
+    ViewData["Title"] = "Vehicles";
 }
-@if (notFound)
+<div class="page-heading">
+    <h1>Vehicles</h1>
+    <a class="button" asp-page="/Vehicles/Create">Add vehicle</a>
+</div>
+
+@if (Model.Vehicles.Count == 0)
 {
-    <h1>That page or record doesn't exist</h1>
-    <p>It may have been deleted. <a asp-page="/Index">Go to the vehicle list</a>.</p>
+    <p class="empty">No vehicles yet. <a asp-page="/Vehicles/Create">Add the first vehicle</a> and its weight category is worked out for you.</p>
 }
 else
 {
-    <h1>Something went wrong</h1>
-    <p>Your request couldn't be completed. Try again, and if it keeps happening, quote reference <code>@Model.RequestId</code>.</p>
+    <div class="table-wrap">
+        <table class="data-table">
+            <caption>
+                @Model.Vehicles.Count vehicle@(Model.Vehicles.Count == 1 ? "" : "s"),
+                sorted by @Model.SortLabel (@(Model.Dir == SortDirection.Ascending ? "ascending" : "descending")).
+                Select a column heading to change the order.
+            </caption>
+            <thead>
+                <tr>
+                    @foreach (var column in IndexModel.Columns)
+                    {
+                        <th scope="col" aria-sort="@Model.AriaSort(column.Field)"
+                            class="@(column.Field == Model.Sort ? "is-sorted" : null) @(column.Field == VehicleSortField.Weight ? "num" : null)">
+                            <a asp-page="/Index" asp-route-sort="@column.Field" asp-route-dir="@Model.NextDirection(column.Field)">
+                                @column.Label
+                                <span class="sort-indicator" aria-hidden="true">@Model.SortIndicator(column.Field)</span>
+                            </a>
+                        </th>
+                    }
+                    <th scope="col">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vehicle in Model.Vehicles)
+                {
+                    <tr>
+                        <td>@vehicle.OwnerName</td>
+                        <td>@vehicle.Manufacturer</td>
+                        <td>@vehicle.YearOfManufacture</td>
+                        <td class="num">@DisplayFormat.Kg(vehicle.WeightKg)</td>
+                        <td>
+                            <span class="category-cell">
+                                <partial name="_CategoryIcon" model="new CategoryIconViewModel(vehicle.CategoryIconKey, vehicle.CategoryName)" />
+                                @vehicle.CategoryName
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
