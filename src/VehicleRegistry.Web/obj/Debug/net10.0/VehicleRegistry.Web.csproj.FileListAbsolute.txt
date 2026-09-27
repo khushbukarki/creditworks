@@ -204,7 +204,6 @@ C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\D
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\scopedcss\bundle\VehicleRegistry.Web.styles.css
-C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\compressed\109nl4086u-{0}-nszpohsv5j-nszpohsv5j.gz
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\compressed\dz6jwob36f-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\compressed\j9y1xlw76p-{0}-uo8h2xves7-uo8h2xves7.gz
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\compressed\drniyxd6m8-{0}-xc1qzaxrwu-xc1qzaxrwu.gz
@@ -223,3 +222,5 @@ C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\D
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\VehicleRegistry.Web.pdb
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\VehicleRegistry.Web.genruntimeconfig.cache
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\ref\VehicleRegistry.Web.dll
+C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\VehicleRegistry.Web.sourcelink.json
+C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Web\obj\Debug\net10.0\compressed\109nl4086u-{0}-fqq2e8391e-fqq2e8391e.gz

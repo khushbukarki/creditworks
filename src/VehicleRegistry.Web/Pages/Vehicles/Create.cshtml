@@ -34,6 +34,7 @@
         <input asp-for="Input.WeightKg" type="number" inputmode="decimal" step="0.01" min="0.01" required aria-describedby="weight-hint" />
         <span id="weight-hint" class="hint">Up to two decimal places, for example 1850.75</span>
         <span asp-validation-for="Input.WeightKg" class="field-error"></span>
+         <p id="category-preview" class="category-preview" aria-live="polite"></p>
     </div>
 
     <div class="form-actions">
@@ -41,3 +42,36 @@
         <a asp-page="/Index">Cancel</a>
     </div>
 </form>
+<script>
+    // Live preview only. The server applies the same rule when saving and is the source of truth.
+    (() => {
+        const categories = @Json.Serialize(Model.Categories.Select(c => new { c.Name, c.IconKey, Min = c.MinWeightKg }));
+        const input = document.getElementById("Input_WeightKg");
+        const preview = document.getElementById("category-preview");
+        const ordered = [...categories].sort((a, b) => a.min - b.min);
+
+        function update() {
+            const weight = parseFloat(input.value);
+            preview.replaceChildren();
+            if (!(weight > 0)) return;
+
+            // Same rule as CategoryRules.Resolve: greatest start <= weight.
+            const match = ordered.filter(c => c.min <= weight).pop();
+            if (!match) return;
+
+            const icon = document.createElement("img");
+            icon.src = `/icons/${match.iconKey}.svg`;
+            icon.alt = "";
+            icon.width = 24;
+            icon.height = 24;
+
+            const text = document.createElement("span");
+            text.textContent = `This vehicle will be categorised as ${match.name}.`;
+
+            preview.append(icon, text);
+        }
+
+        input.addEventListener("input", update);
+        update();
+    })();
+</script>

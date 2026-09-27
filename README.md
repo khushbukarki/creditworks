@@ -129,3 +129,5 @@ You can sort the vehicle list by clicking any column heading. The ▲ or ▼ sho
 - Concurrency checks so two people can't overwrite each other's category changes
 - Browser-based end-to-end tests, probably with Playwright
 - An update to the Testcontainers package to clear the SSH.NET security warning that shows up during restore
+
+The Add vehicle form shows a live category preview as the weight is typed. This is a convenience only: the server applies the same rule when saving and is the source of truth.

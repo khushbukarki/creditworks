@@ -9,3 +9,4 @@ C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Core\obj\
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Core\obj\Debug\net10.0\refint\VehicleRegistry.Core.dll
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Core\obj\Debug\net10.0\VehicleRegistry.Core.pdb
 C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Core\obj\Debug\net10.0\ref\VehicleRegistry.Core.dll
+C:\project\creditworks\CreditWorks.VehicleRegistry\src\VehicleRegistry.Core\obj\Debug\net10.0\VehicleRegistry.Core.sourcelink.json

@@ -76,3 +76,4 @@ input.input-validation-error, select.input-validation-error { border-color: var(
     .scale__band { border-left: 0; border-top: 4px solid var(--marker); border-radius: 0 !important; padding-top: 1.75rem; }
     .scale__start { top: 0.25rem; left: 1rem; color: var(--marker); border-left: 0; padding-left: 0; }
 }
+.category-preview { display: flex; align-items: center; gap: 0.5rem; margin: 0.25rem 0 0; font-weight: 600; min-height: 1.5rem; }

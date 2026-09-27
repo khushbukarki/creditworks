@@ -1,25 +1,27 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VehicleRegistry.Core.Rules;
 using VehicleRegistry.Core.Services;
 using VehicleRegistry.Web.Models;
 
 namespace VehicleRegistry.Web.Pages.Vehicles;
 
-public class CreateModel(IVehicleService vehicleService) : PageModel
+public class CreateModel(IVehicleService vehicleService, ICategoryService categoryService) : PageModel
 {
     [BindProperty]
     public VehicleForm Input { get; set; } = new();
 
     public IReadOnlyList<ManufacturerOption> Manufacturers { get; private set; } = [];
 
+    /// <summary>Used only for the live preview. The server still decides the real category.</summary>
+    public IReadOnlyList<CategoryRange> Categories { get; private set; } = [];
+
     public async Task OnGetAsync(CancellationToken cancellationToken) =>
-        Manufacturers = await vehicleService.GetManufacturersAsync(cancellationToken);
+        await LoadListsAsync(cancellationToken);
 
     public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
     {
-        // ModelState only holds binding errors (e.g. "abc" as weight).
-        // All business validation happens on the server in the service.
         if (ModelState.IsValid)
         {
             var result = await vehicleService.AddVehicleAsync(Input.ToInput(), cancellationToken);
@@ -32,8 +34,14 @@ public class CreateModel(IVehicleService vehicleService) : PageModel
             ModelState.AddValidationErrors(result.Errors, nameof(Input));
         }
 
-        Manufacturers = await vehicleService.GetManufacturersAsync(cancellationToken);
+        await LoadListsAsync(cancellationToken);
         return Page();
+    }
+
+    private async Task LoadListsAsync(CancellationToken cancellationToken)
+    {
+        Manufacturers = await vehicleService.GetManufacturersAsync(cancellationToken);
+        Categories = await categoryService.GetCategoriesAsync(cancellationToken);
     }
 
     public sealed class VehicleForm
