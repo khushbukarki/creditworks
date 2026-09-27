@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/VehicleRegistry.Core/VehicleRegistry.Core.csproj" />
+    <Project Path="src/VehicleRegistry.Infrastructure/VehicleRegistry.Infrastructure.csproj" />
+    <Project Path="src/VehicleRegistry.Web/VehicleRegistry.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/VehicleRegistry.IntegrationTests/VehicleRegistry.IntegrationTests.csproj" />
+    <Project Path="tests/VehicleRegistry.UnitTests/VehicleRegistry.UnitTests.csproj" />
+  </Folder>
+</Solution>

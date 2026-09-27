@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <UserSecretsId>creditworks-vehicle-registry</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleRegistry.Core\VehicleRegistry.Core.csproj" />
+    <ProjectReference Include="..\VehicleRegistry.Infrastructure\VehicleRegistry.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
